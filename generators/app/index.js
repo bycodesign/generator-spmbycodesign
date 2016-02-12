@@ -129,7 +129,7 @@ module.exports = generators.Base.extend({
             this.template(SOURCE_DIRECTORY + '_EditadoEvent.java', destination + this.classe + 'EditadoEvent.java', this, {});
             this.template(SOURCE_DIRECTORY + '_EditarCommand.java', destination + 'Editar' + this.classe + 'Command.java', this, {});
             this.template(SOURCE_DIRECTORY + '_Entity.java', destination + this.classe + '.java', this, {});
-            this.template(SOURCE_DIRECTORY + '_FindByParameter.java', destination + this.classe + 'FindbyParameter.java', this, {});
+            this.template(SOURCE_DIRECTORY + '_FindByParameter.java', destination + this.classe + 'FindByParameter.java', this, {});
             this.template(SOURCE_DIRECTORY + '_Id.java', destination + this.classe + 'Id.java', this, {});
             this.template(SOURCE_DIRECTORY + '_Repository.java', destination + this.classe + 'Repository.java', this, {});
         }
