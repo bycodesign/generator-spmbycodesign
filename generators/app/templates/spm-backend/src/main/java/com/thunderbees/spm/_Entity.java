@@ -10,22 +10,20 @@ import arquitetura.geral.empresa.EmpresaId;
 @Entity(name = "<%=tabela%>")
 public class <%=classe%> extends AbstractEntity<<%=classe%>Id> {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     @AttributeOverrides({@AttributeOverride(name = "value", column = @Column(name = "empresa_id"))})
     private EmpresaId empresaId;
-
 <%for(fieldId in fields){%>
     private <%=fields[fieldId].fieldType%> <%=fields[fieldId].fieldName%>;
 <%}%>
-
-    public<%=classe%>(){
+    public<%=classe%>() {
         super();
     }
 
     public <%=classe%> (Criar<%=classe%>Command command) {
         this();
-        apply(new<%=classe%>CriadoEvent(command));
+        apply(new <%=classe%>CriadoEvent(command));
     }
 
     public void on(<%=classe%>CriadoEvent event) {
@@ -34,7 +32,7 @@ public class <%=classe%> extends AbstractEntity<<%=classe%>Id> {
     }
 
     public void handle(Editar<%=classe%>Command command) {
-        apply(new<%=classe%>EditadoEvent(command));
+        apply(new <%=classe%>EditadoEvent(command));
     }
 
     public void on(<%=classe%>EditadoEvent event) {
@@ -43,7 +41,6 @@ public class <%=classe%> extends AbstractEntity<<%=classe%>Id> {
     public EmpresaId getEmpresaId() {
         return empresaId;
     }
-
 <%for(fieldId in fields){%>
     public <%=fields[fieldId].fieldType%> get<%=fields[fieldId].capitalizedFieldName%>() {
         return this.<%=fields[fieldId].fieldName%>;
