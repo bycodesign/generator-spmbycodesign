@@ -101,6 +101,7 @@ module.exports = generators.Base.extend({
                     fieldId: this.fieldId,
                     fieldName: props.fieldName,
                     capitalizedFieldName: formatClassName(props.fieldName),
+                    underscoredFieldName: formatUrlName(props.fieldName, "_"),
                     fieldType: props.fieldType
                 };
                 fieldNamesUnderscored.push(_s.underscored(props.fieldName));
@@ -145,7 +146,7 @@ module.exports = generators.Base.extend({
                 this.classe = formatClassName(answers.className);
                 this.pacote = formatPackageName(this.classe);
                 this.variavel = formatVariableName(this.classe);
-                this.url = formatUrlName(this.classe);
+                this.url = formatUrlName(this.classe, "-");
                 this.tabela = formatTableName(this.classe);
                 this.log(answers);
                 cb()
@@ -174,8 +175,8 @@ function formatPackageName(name) {
     return name.toLowerCase();
 }
 
-function formatUrlName(name) {
-    return name.toLowerCase();
+function formatUrlName(name, replacement) {
+    return name.charAt(0).toLowerCase() + name.slice(1).replace(/([A-Z])/g, replacement + "$1").toLowerCase();
 }
 
 function formatTableName(name) {

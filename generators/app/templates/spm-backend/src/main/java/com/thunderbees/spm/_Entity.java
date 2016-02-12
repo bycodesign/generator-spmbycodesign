@@ -15,8 +15,10 @@ public class <%=classe%> extends AbstractEntity<<%=classe%>Id> {
     @AttributeOverrides({@AttributeOverride(name = "value", column = @Column(name = "empresa_id"))})
     private EmpresaId empresaId;
 <%for(fieldId in fields){%>
+    @Column(name = "<%=fields[fieldId].underscoredFieldName%>")
     private <%=fields[fieldId].fieldType%> <%=fields[fieldId].fieldName%>;
 <%}%>
+
     public<%=classe%>() {
         super();
     }

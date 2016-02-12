@@ -9,8 +9,7 @@ public class <%=classe%>CriadoEvent extends AbstractEventGeneric<Criar<%=classe%
 
     private <%=classe%>Id entityId;
 <%for(fieldId in fields){%>
-    private <%=fields[fieldId].fieldType%> <%=fields[fieldId].fieldName%>;
-<%}%>
+    private <%=fields[fieldId].fieldType%> <%=fields[fieldId].fieldName%>;<%}%>
     private EmpresaId contextEmpresaId;
 
     public<%=classe%>CriadoEvent(Criar<%=classe%>Command sourceMessage) {

@@ -9,6 +9,8 @@ import arquitetura.geral.empresa.EmpresaId;
 public class Editar<%=classe%>Command extends BasicAbstractCommand<<%=classe%>Id> {
 
     private static final long serialVersionUID = 1L;
+<%for(fieldId in fields){%>
+    private <%=fields[fieldId].fieldType%> <%=fields[fieldId].fieldName%>;<%}%>
 
     public Editar<%=classe%>Command() {
     }

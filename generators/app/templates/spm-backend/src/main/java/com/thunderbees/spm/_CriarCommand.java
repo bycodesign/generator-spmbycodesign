@@ -9,8 +9,8 @@ public class Criar<%=classe%>Command extends BasicAbstractCommand<<%=classe%>Id>
 
 private static final long serialVersionUID=1L;
 <%for(fieldId in fields){%>
-    private <%=fields[fieldId].fieldType%> <%=fields[fieldId].fieldName%>;
-<%}%>
+    private <%=fields[fieldId].fieldType%> <%=fields[fieldId].fieldName%>;<%}%>
+
     public Criar<%=classe%>Command() {
         entityId = new <%=classe%>Id();
     }
