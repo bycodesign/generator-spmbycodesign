@@ -10,7 +10,11 @@ const RESERVED_WORDS_POSTGRES = ["ALL", "ANALYSE", "ANALYZE", "AND", "ANY", "ARR
 
 const SOURCE_DIRECTORY = 'spm-backend/src/main/java/com/thunderbees/spm/';
 
+const SOURCE_RESOURCE_DIRECTORY = 'spm-backend/src/main/resources/changelog/';
+
 const DESTINATION_DIRECTORY = 'src/main/java/com/thunderbees/spm/';
+
+const TARGET_RESOURCE_DIRECTORY = 'src/main/resources/changelog/';
 
 module.exports = generators.Base.extend({
     _askForField: function (cb) {
@@ -57,7 +61,7 @@ module.exports = generators.Base.extend({
                 choices: [
                     {
                         value: 'String',
-                        name: 'String'
+                        name: 'String - Description'
                     },
                     {
                         value: 'Integer',
@@ -69,23 +73,23 @@ module.exports = generators.Base.extend({
                     },
                     {
                         value: 'Float',
-                        name: 'Float'
+                        name: 'Float - Percentage'
                     },
                     {
                         value: 'Double',
-                        name: 'Double'
+                        name: 'Double - Decimal'
                     },
                     {
                         value: 'BigDecimal',
-                        name: 'BigDecimal'
+                        name: 'BigDecimal - Monetary'
                     },
                     {
                         value: 'LocalDate',
-                        name: 'LocalDate'
+                        name: 'LocalDate - Date'
                     },
                     {
                         value: 'ZonedDateTime',
-                        name: 'ZonedDateTime'
+                        name: 'ZonedDateTime - Timestamp'
                     },
                     {
                         value: 'Boolean',
@@ -102,11 +106,12 @@ module.exports = generators.Base.extend({
                     fieldName: props.fieldName,
                     capitalizedFieldName: formatClassName(props.fieldName),
                     underscoredFieldName: formatUrlName(props.fieldName, "_"),
-                    fieldType: props.fieldType
+                    fieldType: props.fieldType,
+                    liquibaseFieldType: getLiquibaseFieldType(props.fieldType)
+
                 };
                 fieldNamesUnderscored.push(_s.underscored(props.fieldName));
                 this.fields.push(field);
-                this.log(this.fields);
                 this._askForField(cb);
             } else {
                 cb();
@@ -132,6 +137,7 @@ module.exports = generators.Base.extend({
             this.template(SOURCE_DIRECTORY + '_FindByParameter.java', destination + this.classe + 'FindByParameter.java', this, {});
             this.template(SOURCE_DIRECTORY + '_Id.java', destination + this.classe + 'Id.java', this, {});
             this.template(SOURCE_DIRECTORY + '_Repository.java', destination + this.classe + 'Repository.java', this, {});
+            this.template(SOURCE_RESOURCE_DIRECTORY + '_changelog.xml', TARGET_RESOURCE_DIRECTORY + this.classe + "_changelog.xml", this, {});
         }
     },
     prompting: {
@@ -180,5 +186,17 @@ function formatUrlName(name, replacement) {
 }
 
 function formatTableName(name) {
-    return name.toUpperCase();
+    return name.charAt(0).toLowerCase() + name.slice(1).replace(/([A-Z])/g, "_" + "$1").toLowerCase();
+}
+
+function getLiquibaseFieldType(fieldType) {
+    switch (fieldType) {
+        case 'String': return 'DESCRIPTION';
+        case 'BigDecimal': return 'MONETARY';
+        case 'LocalDate': return 'DATE';
+        case 'ZonedDateTime': return 'TIMESTAMP';
+        case 'Double': return 'DECIMAL';
+        case 'Float': return 'PERCENTAGE';
+    }
+    return fieldType.toUpperCase();
 }
