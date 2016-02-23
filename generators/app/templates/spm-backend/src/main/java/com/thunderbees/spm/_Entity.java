@@ -19,7 +19,7 @@ public class <%=classe%> extends AbstractEntity<<%=classe%>Id> {
     private <%=fields[fieldId].fieldType%> <%=fields[fieldId].fieldName%>;
 <%}%>
 
-    public<%=classe%>() {
+    public <%=classe%>() {
         super();
     }
 

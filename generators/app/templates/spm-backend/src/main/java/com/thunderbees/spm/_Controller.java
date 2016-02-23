@@ -33,7 +33,7 @@ public class <%=classe%>Controller extends AbstractCommandController {
     @RequestMapping(method = RequestMethod.GET, params = {"entityId"})
     @ResponseBody
     public <%=classe%> recuperar<%=classe%>(@RequestParam String entityId) {
-        return repository.findOne(new<%=classe%>Id(entityId));
+        return repository.findOne(new <%=classe%>Id(entityId));
     }
 
 }

@@ -15,7 +15,7 @@ import arquitetura.impl.AbstractCommand;
 @Component
 @MessageHandler
 @Transactional
-public class<%=classe%>CommandHandler extends AbstractCommandHandler {
+public class <%=classe%>CommandHandler extends AbstractCommandHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(<%=classe%>CommandHandler.class);
 

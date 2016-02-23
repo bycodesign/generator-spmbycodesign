@@ -1,9 +1,9 @@
 package com.thunderbees.spm.<%=pacote%>;
 
-  import com.fasterxml.jackson.annotation.JsonCreator;
-  import com.fasterxml.jackson.annotation.JsonProperty;
-  import com.thunderbees.spm.BasicAbstractCommand;
-  import arquitetura.geral.empresa.EmpresaId;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import arquitetura.api.BasicAbstractCommand;
+import arquitetura.geral.empresa.EmpresaId;
 
 public class Criar<%=classe%>Command extends BasicAbstractCommand<<%=classe%>Id> {
 
@@ -17,7 +17,7 @@ private static final long serialVersionUID=1L;
 
     @JsonCreator
     public Criar<%=classe%>Command(<%for(fieldId in fields) {%>@JsonProperty("<%=fields[fieldId].fieldName%>") <%=fields[fieldId].fieldType%> <%=fields[fieldId].fieldName%>, <%}%>@JsonProperty("contextEmpresaId") EmpresaId contextEmpresaId) {
-        this(new <%=classe%>Id(), contextEmpresaId<%for(fieldId in fields) {%>, <%=fields[fieldId].fieldName%><%}%>);
+        this(new <%=classe%>Id(), <%for(fieldId in fields) {%><%=fields[fieldId].fieldName%>, <%}%> contextEmpresaId);
     }
 
     public Criar<%=classe%>Command(<%=classe%>Id entityId, <%for(fieldId in fields) {%><%=fields[fieldId].fieldType%> <%=fields[fieldId].fieldName%>, <%}%>EmpresaId contextEmpresaId) {

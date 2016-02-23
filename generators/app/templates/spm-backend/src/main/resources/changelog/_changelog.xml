@@ -5,6 +5,9 @@
         </column>
         <column name="version" type="${VERSION}">
             <constraints nullable="false" checkConstraint="<%=tabela%>_version_nn"/>
+        </column>
+        <column name="empresa_id" type="${ID}">
+            <constraints nullable="false" foreignKeyName="<%=tabela%>_empresa_fk" referencedTableName="empresa" referencedColumnNames="id"/>
         </column><%for (fieldId in fields) {%>
         <column name="<%=fields[fieldId].underscoredFieldName%>" type="${<%=fields[fieldId].liquibaseFieldType%>}">
             <constraints nullable="false" checkConstraint="<%=tabela%>_<%=fields[fieldId].underscoredFieldName%>_nn"/>

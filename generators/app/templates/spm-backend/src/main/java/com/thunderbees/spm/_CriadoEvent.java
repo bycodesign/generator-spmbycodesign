@@ -12,14 +12,14 @@ public class <%=classe%>CriadoEvent extends AbstractEventGeneric<Criar<%=classe%
     private <%=fields[fieldId].fieldType%> <%=fields[fieldId].fieldName%>;<%}%>
     private EmpresaId contextEmpresaId;
 
-    public<%=classe%>CriadoEvent(Criar<%=classe%>Command sourceMessage) {
+    public <%=classe%>CriadoEvent(Criar<%=classe%>Command sourceMessage) {
         super(sourceMessage);
         entityId = sourceMessage.getEntityId();<%for(fieldId in fields) {%>
         this.<%=fields[fieldId].fieldName%> = <%=fields[fieldId].fieldName%>;<%}%>
         contextEmpresaId = sourceMessage.getContextEmpresaId();
     }
 
-    public<%=classe%>Id getEntityId() {
+    public <%=classe%>Id getEntityId() {
         return entityId;
     }
 <%for(fieldId in fields){%>

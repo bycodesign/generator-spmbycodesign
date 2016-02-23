@@ -2,7 +2,7 @@ package com.thunderbees.spm.<%=pacote%>;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.thunderbees.spm.BasicAbstractCommand;
+import arquitetura.api.BasicAbstractCommand;
 
 import arquitetura.geral.empresa.EmpresaId;
 
