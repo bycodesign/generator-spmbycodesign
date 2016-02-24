@@ -1,0 +1,42 @@
+<changeSet id="insertItemDeAcesso<%=classe%>" author="codesign">
+    <insert tableName="<%=tabela%>">
+        <column name="id" value="<%=itemDeAcessoID%>"/>
+        <column name="nome" value="<%=classe%>"/>
+        <column name="tipo" value="MENU"/>
+        <column name="version" value="0"/>
+        <column name="itemdeacesso_superior_id" value="a783a6a9-f816-49c0-9364-1f88d9f8ceac"/>
+    </insert>
+</changeSet>
+<changeSet id="insertItemDeAcesso<%=classe%>List" author="codesign">
+    <insert tableName="itemdeacesso">
+        <column name="id" value="<%=itemDeAcessoListID%>"/>
+        <column name="nome" value="Listagem de <%=classe%>"/>
+        <column name="url" value="/<%=url%>/list"/>
+        <column name="feature" value="LISTAR_<%=classe.toUpperCase()%>"/>
+        <column name="version" value="0"/>
+        <column name="tipo" value="MENU"/>
+        <column name="itemdeacesso_superior_id" value="<%=itemDeAcessoID%>"/>
+    </insert>
+</changeSet>
+<changeSet id="insertItemDeAcesso<%=classe%>Edit" author="codesign">
+    <insert tableName="itemdeacesso">
+        <column name="id" value="<%=itemDeAcessoEditID%>"/>
+        <column name="nome" value="Editar de <%=classe%>"/>
+        <column name="url" value="/<%=url%>/:id/edit"/>
+        <column name="feature" value="EDITAR_<%=classe.toUpperCase()%>"/>
+        <column name="version" value="0"/>
+        <column name="tipo" value="ACAO"/>
+        <column name="itemdeacesso_superior_id" value="<%=itemDeAcessoID%>"/>
+    </insert>
+</changeSet>
+<changeSet id="insertItemDeAcesso<%=classe%>Create" author="codesign">
+    <insert tableName="itemdeacesso">
+        <column name="id" value="<%=itemDeAcessoCreateID%>"/>
+        <column name="nome" value="Cadastrar <%=classe%>"/>
+        <column name="url" value="/<%=url%>/create"/>
+        <column name="feature" value="CRIAR_<%=classe.toUpperCase()%>"/>
+        <column name="version" value="0"/>
+        <column name="tipo" value="MENU"/>
+        <column name="itemdeacesso_superior_id" value="<%=itemDeAcessoID%>"/>
+    </insert>
+</changeSet>

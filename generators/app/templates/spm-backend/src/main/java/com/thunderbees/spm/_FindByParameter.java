@@ -10,6 +10,6 @@ public class <%=classe%>FindByParameter extends SQLQuery {
     public <%=classe%>FindByParameter() {
         super("select tabela.id, <%for (fieldId in fields) {%>tabela.<%=fields[fieldId].underscoredFieldName%>, <%}%>tabela.version " +
                 " from <%=tabela%> tabela " +
-                " where ");
+                " where ", "parameter");
     }
 }

@@ -2,6 +2,7 @@
 var generators = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var uuid = require('node-uuid');
 var _s = require('underscore.string');
 
 const RESERVED_WORDS_JAVA = ["ABSTRACT", "CONTINUE", "FOR", "NEW", "SWITCH", "ASSERT", "DEFAULT", "GOTO", "PACKAGE", "SYNCHRONIZED", "BOOLEAN", "DO", "IF", "PRIVATE", "THIS", "BREAK", "DOUBLE", "IMPLEMENTS", "PROTECTED", "THROW", "BYTE", "ELSE", "IMPORT", "PUBLIC", "THROWS", "CASE", "ENUM", "INSTANCEOF", "RETURN", "TRANSIENT", "CATCH", "EXTENDS", "INT", "SHORT", "TRY", "CHAR", "FINAL", "INTERFACE", "STATIC", "VOID", "CLASS", "FINALLY", "LONG", "STRICTFP", "VOLATILE", "CONST", "FLOAT", "NATIVE", "SUPER", "WHILE"];
@@ -138,6 +139,7 @@ module.exports = generators.Base.extend({
             this.template(SOURCE_DIRECTORY + '_Id.java', destination + this.classe + 'Id.java', this, {});
             this.template(SOURCE_DIRECTORY + '_Repository.java', destination + this.classe + 'Repository.java', this, {});
             this.template(SOURCE_RESOURCE_DIRECTORY + '_changelog.xml', TARGET_RESOURCE_DIRECTORY + this.classe + "_changelog.xml", this, {});
+            this.template(SOURCE_RESOURCE_DIRECTORY + '_changelogMenu.xml', TARGET_RESOURCE_DIRECTORY + this.classe + "_changelogMenu.xml", this, {});
         }
     },
     prompting: {
@@ -164,6 +166,10 @@ module.exports = generators.Base.extend({
                 this.variavel = formatVariableName(this.classe);
                 this.url = formatUrlName(this.classe, "-");
                 this.tabela = formatTableName(this.classe);
+                this.itemDeAcessoID = uuid.v4();
+                this.itemDeAcessoListID = uuid.v4();
+                this.itemDeAcessoEditID = uuid.v4();
+                this.itemDeAcessoCreateID = uuid.v4();
                 this.log(answers);
                 cb()
             }.bind(this));
