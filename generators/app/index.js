@@ -39,8 +39,8 @@ module.exports = generators.Base.extend({
                     } else if (input == '') {
                         return 'O nome do campo não pode ser vazio';
                     } else if (input.charAt(0) == input.charAt(0).toUpperCase()) {
-                        return 'O nome do campo deve começar com uma letra maiúscula';
-                    } else if (input == 'id' || input == 'empresaId') {
+                        return 'O nome do campo deve começar com uma letra minúscula';
+                    } else if (input == 'id' || input == 'empresaId' || input == 'version') {
                         return 'Já existe um campo com esse nome';
                     } else if (RESERVED_WORDS_JAVA.indexOf(input.toUpperCase()) != -1) {
                         return 'O nome do campo não pode conter palavras reservadas do Java';
@@ -84,12 +84,12 @@ module.exports = generators.Base.extend({
                         name: 'BigDecimal - Monetary'
                     },
                     {
-                        value: 'LocalDate',
-                        name: 'LocalDate - Date'
+                        value: 'Date',
+                        name: 'Date'
                     },
                     {
-                        value: 'ZonedDateTime',
-                        name: 'ZonedDateTime - Timestamp'
+                        value: 'Timestamp',
+                        name: 'Timestamp'
                     },
                     {
                         value: 'Boolean',
@@ -147,6 +147,16 @@ module.exports = generators.Base.extend({
                 type: 'input',
                 name: 'className',
                 message: 'Nome da Classe',
+                validate: function (input) {
+                    if (!(/^([a-zA-Z0-9_]*)$/.test(input))) {
+                        return 'O Nome da Classe não pode conter Caracteres Especiais';
+                    } else if (input == '') {
+                        return 'O Nome da Classe não pode ser vazio';
+                    } else if (input.charAt(0) == input.charAt(0).toLowerCase()) {
+                        return 'O Nome da Classe deve começar com uma letra maiúscula';
+                    }
+                    return true;
+                },
                 default: this.appname
             }, function (answers) {
                 this.classe = formatClassName(answers.className);
@@ -193,8 +203,8 @@ function getLiquibaseFieldType(fieldType) {
     switch (fieldType) {
         case 'String': return 'DESCRIPTION';
         case 'BigDecimal': return 'MONETARY';
-        case 'LocalDate': return 'DATE';
-        case 'ZonedDateTime': return 'TIMESTAMP';
+        case 'Date': return 'DATE';
+        case 'Timestamp': return 'TIMESTAMP';
         case 'Double': return 'DECIMAL';
         case 'Float': return 'PERCENTAGE';
     }
