@@ -26,7 +26,7 @@
         <column name="feature" value="EDITAR_<%=classe.toUpperCase()%>"/>
         <column name="version" value="0"/>
         <column name="tipo" value="ACAO"/>
-        <column name="itemdeacesso_superior_id" value="<%=itemDeAcessoID%>"/>
+        <column name="itemdeacesso_superior_id" value="<%=itemDeAcessoListID%>"/>
     </insert>
 </changeSet>
 <changeSet id="insertItemDeAcesso<%=classe%>Create" author="codesign">
