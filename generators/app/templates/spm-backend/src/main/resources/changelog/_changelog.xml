@@ -1,7 +1,7 @@
 <changeSet id="createTable<%=classe%>" author="codesign">
     <createTable tableName="<%=tabela%>">
         <column name="id" type="${ID}">
-            <constraints nullable="false" checkConstraint="<%=tabela%>_pk"/>
+            <constraints nullable="false" primaryKey="true" primaryKeyName="<%=tabela%>_pk"/>
         </column>
         <column name="version" type="${VERSION}">
             <constraints nullable="false" checkConstraint="<%=tabela%>_version_nn"/>
